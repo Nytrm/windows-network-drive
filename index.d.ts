@@ -27,6 +27,7 @@ declare module 'windows-network-drive' {
     driveLetter?: string,
     username?: string,
     password?: string,
+    persistent?: boolean
   ): Promise<string>;
 
   /** Unmounts a network drive. */
