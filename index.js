@@ -230,6 +230,7 @@ let windowsNetworkDrive = {
 	 * @param {string} [driveLetter] - Drive letter to use when mounting. If undefined a random drive letter will be used.
 	 * @param {string} [username] - Username to use when accessing network drive
 	 * @param {string} [password] - Password to use when accessing network drive
+   	 * @param {boolean} [persistent] - Controls the use of persistent network connections
 	 * @returns {Promise<string>} - Drive letter
 	 * @description Creates a network drive
 	 * @example
@@ -237,11 +238,12 @@ let windowsNetworkDrive = {
 	 * // returns
 	 * "F"
 	 */
-	mount: function mount(drivePath, driveLetter, username, password)
+	mount: function mount(drivePath, driveLetter, username, password, persistent = true)
 	{
 		let driveLetters = require("windows-drive-letters");
 		let mountPromise;
 		let mountCommand = "net use";
+		const isPersistent = persistent ? 'Yes' : 'No';
 
 		mountPromise = Promise.resolve()
 			.then(function ()
@@ -328,7 +330,7 @@ let windowsNetworkDrive = {
 			 */
 			.then(function ()
 			{
-				mountCommand += " " + driveLetter + ": \"" + drivePath + "\" /P:Yes";
+				mountCommand += " " + driveLetter + ": \"" + drivePath + "\" /P:" + isPersistent;
 
 				/**
 				 * There is not an easy way to setup a network drive with a username and password
