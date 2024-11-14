@@ -230,7 +230,7 @@ let windowsNetworkDrive = {
 	 * @param {string} [driveLetter] - Drive letter to use when mounting. If undefined a random drive letter will be used.
 	 * @param {string} [username] - Username to use when accessing network drive
 	 * @param {string} [password] - Password to use when accessing network drive
-   	 * @param {boolean} [persistent] - Controls the use of persistent network connections
+	 * @param {boolean} [persistent] - Controls the use of persistent network connections
 	 * @returns {Promise<string>} - Drive letter
 	 * @description Creates a network drive
 	 * @example
